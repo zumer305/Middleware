@@ -21,3 +21,7 @@ function isLoggedIn(req, res, next) {
 app.get("/profile", isLoggedIn, (req, res) => {
   res.send("Welcome to your profile");
 });
+
+
+---------------------------------------------------------------
+custom error handeling

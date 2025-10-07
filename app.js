@@ -36,7 +36,7 @@ const ExpressError=require("./ExpressError");
 
 
 
-
+// custom error handeling --------------------------------
 
 //middleware (e.g google pass sa khulta to /api?token=give access)
 app.use("/api",(req,res,next)=>{
@@ -66,8 +66,8 @@ app.get("/err",(req,res)=>{
     abc=abc;
 })
 app.use((err,req,res,next)=>{
-    console.log("------error------");
-    res.send(err);
+    let{status=500,message="error"}=err;
+    res.status(status).send(message);
     //next();simple error handling middleware
     // next(err); non-error handling middlewares 
 });
