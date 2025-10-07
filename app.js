@@ -37,7 +37,6 @@ const ExpressError=require("./ExpressError");
 
 
 // custom error handeling --------------------------------
-
 //middleware (e.g google pass sa khulta to /api?token=give access)
 app.use("/api",(req,res,next)=>{
     let{token}=req.query;
@@ -46,9 +45,9 @@ app.use("/api",(req,res,next)=>{
     }
     throw new ExpressError(401,"access denied");
 })
-app.get("/api",(req,res)=>{
-    res.send("data");
-})
+// app.get("/api",(req,res)=>{
+//     res.send("data");
+// })
 
 // same as above 
 // const checkToken=(req,res,next)=>{
@@ -62,6 +61,12 @@ app.get("/api",(req,res)=>{
 //     res.send("data");
 // });
 
+
+
+
+
+
+// for error--------------------------------------2**************************
 app.get("/err",(req,res)=>{
     abc=abc;
 })
@@ -71,7 +76,13 @@ app.use((err,req,res,next)=>{
     //next();simple error handling middleware
     // next(err); non-error handling middlewares 
 });
+// -------------------------------------------------------2********************
 
+
+app.use("/admin",(req,res,next)=>{
+   
+    throw new ExpressError(403,"access is forbidden");
+})
 
 
 
