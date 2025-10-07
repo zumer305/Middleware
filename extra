@@ -5,3 +5,19 @@ middleware(res,next-middleware) but basic work next-middleware ko control pass k
 logger(kiski req ai kiski req gai complete uski info)
 
 
+MIDDLE-WARE-------------------------------------------------------
+check something,
+modify something,
+stop the request,
+allow it to continue.
+
+EXAMPLE-------------------------------------------------------------
+function isLoggedIn(req, res, next) {
+  if (!req.user) {
+    return res.redirect("/login");
+  }
+  next(); // user is logged in, move ahead
+}
+app.get("/profile", isLoggedIn, (req, res) => {
+  res.send("Welcome to your profile");
+});
