@@ -1,5 +1,6 @@
 const express=require("express");
 const app=express();
+const ExpressError=require("./ExpressError");
 
 // // middleware 
 // app.use((req,res,next)=>{
@@ -43,7 +44,7 @@ app.use("/api",(req,res,next)=>{
     if(token=="give access"){
         next();
     }
-    throw new Error("access denied");
+    throw new ExpressError(401,"access denied");
 })
 app.get("/api",(req,res)=>{
     res.send("data");
@@ -60,6 +61,16 @@ app.get("/api",(req,res)=>{
 // app.get("/api",checkToken(req,res)=>{
 //     res.send("data");
 // });
+
+app.get("/err",(req,res)=>{
+    abc=abc;
+})
+app.use((err,req,res,next)=>{
+    console.log("------error------");
+    res.send(err);
+    //next();simple error handling middleware
+    // next(err); non-error handling middlewares 
+});
 
 
 
